@@ -213,7 +213,9 @@ project/
 
 ---
 ## 📓 Notebook Demo
+
 - 🚀 Mở bằng Colab:
-https://colab.research.goole.com/github.com/NguyenPhanDinhHao/investment-decision-system/blob/b9e95d9a5af2270b3109ff757fc9f60f02088b72/notebooks/data_cleaning.ipynd
+https://colab.research.google.com/github/NguyenPhanDinhHao/investment-decision-system/blob/137cbff1373286d624abc6eeee803dc82380a923/notebooks/data_cleaning.ipynb
+
 - 📊 Xem bản đẹp (nbviewer):
-https://nbviewer.org/github.com/NguyenPhanDinhHao/investment-decision-system/blob/b9e95d9a5af2270b3109ff757fc9f60f02088b72/notebooks/data_cleaning.ipynd
+https://nbviewer.org/github/NguyenPhanDinhHao/investment-decision-system/blob/137cbff1373286d624abc6eeee803dc82380a923/notebooks/data_cleaning.ipynb
