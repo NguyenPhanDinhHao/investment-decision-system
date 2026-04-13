@@ -1,112 +1,28 @@
-
-------------------------------------
-🧹 Data Cleaning & Preprocessing
-
-🎯 Mục tiêu
-
-Dữ liệu thực tế thường chứa nhiều sai lệch như:
-
-* Giá trị thiếu (missing values)
-
-* Dữ liệu bất thường (outliers)
-
-* Sai định dạng (data type inconsistency)
-
-👉 Vì vậy, bước làm sạch dữ liệu là cần thiết để đảm bảo độ chính xác cho việc xây dựng dòng tiền và phân tích đầu tư.
-------------------------------------
-
-Import thư viện
-"""
-
 import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
 
-"""Load dữ liệu"""
+# Load data
+df = pd.read_csv("data/raw/online_retail.csv", encoding="ISO-8859-1")
 
-df = pd.read_csv("/online_retail.csv", encoding="ISO-8859-1")
-
-df.head()
-
-"""Kiểm tra dữ liệu ban đầu"""
-
-df.info()
-df.isnull().sum()
-df.describe()
-
-print("Quantity <= 0:", (df['Quantity'] <= 0).sum())
-print("UnitPrice <= 0:", (df['UnitPrice'] <= 0).sum())
-
-"""***🧹CLEAN DATA***
-
-Chuyển datetime
-"""
-
+# Convert datetime
 df['InvoiceDate'] = pd.to_datetime(df['InvoiceDate'])
 
-"""Xóa missing CustomerID"""
-
+# Remove missing CustomerID
 df = df.dropna(subset=['CustomerID'])
 
-"""Xóa Quantity âm (hàng trả)"""
-
+# Remove invalid data
 df = df[df['Quantity'] > 0]
-
-"""Xóa giá = 0"""
-
 df = df[df['UnitPrice'] > 0]
 
-"""Kiểm tra lại sau khi clean"""
-
-df.info()
-df.isnull().sum()
-
-print("Quantity <= 0:", (df['Quantity'] <= 0).sum())
-print("UnitPrice <= 0:", (df['UnitPrice'] <= 0).sum())
-
-"""Tạo Revenue"""
-
+# Create Revenue
 df['Revenue'] = df['Quantity'] * df['UnitPrice']
 
-df.head()
-
-"""Gom theo tháng"""
-
+# Create Month
 df['Month'] = df['InvoiceDate'].dt.to_period('M')
 
+# Aggregate monthly
 monthly = df.groupby('Month')['Revenue'].sum().reset_index()
 
-monthly.head()
+# Save cleaned data
+monthly.to_csv("data/processed/monthly_revenue.csv", index=False)
 
-"""Biểu đồ"""
-
-plt.figure()
-plt.plot(monthly['Month'].astype(str), monthly['Revenue'])
-plt.xticks(rotation=45)
-plt.title("Monthly Revenue")
-plt.xlabel("Month")
-plt.ylabel("Revenue")
-plt.show()
-
-# Giả lập chi phí 60%
-monthly['Cost'] = monthly['Revenue'] * 0.6
-
-# Cashflow
-monthly['Cashflow'] = monthly['Revenue'] - monthly['Cost']
-
-# Thêm đầu tư ban đầu
-monthly.loc[0, 'Cashflow'] = -2000
-
-monthly.head()
-
-"""Tạo CASHFLOW"""
-
-plt.figure()
-plt.plot(monthly['Cashflow'])
-plt.title("Cashflow over time")
-plt.show()
-
-"""số dòng trước & sau clean"""
-
-print("Before cleaning:", len(pd.read_csv("/online_retail.csv", encoding="ISO-8859-1")))
-print("After cleaning:", len(df))
+print("Data cleaning completed!")
