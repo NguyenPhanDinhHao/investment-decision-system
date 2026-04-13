@@ -212,3 +212,5 @@ project/
 > “Đây không chỉ là bài toán tính IRR, mà là xây dựng hệ thống ra quyết định giống như một nhà đầu tư thực thụ.”
 
 ---
+📓 Xem notebook đẹp tại:
+https://nbviewer.org/github/yourname/repo/blob/main/notebooks/data_cleaning.ipynb
