@@ -212,5 +212,8 @@ project/
 > “Đây không chỉ là bài toán tính IRR, mà là xây dựng hệ thống ra quyết định giống như một nhà đầu tư thực thụ.”
 
 ---
-📓 Xem notebook đẹp tại:
-https://nbviewer.org/github/yourname/repo/blob/main/notebooks/data_cleaning.ipynb
+## 📓 Notebook Demo
+- 🚀 Mở bằng Colab:
+https://colab.research.goole.com/github.com/NguyenPhanDinhHao/investment-decision-system/blob/b9e95d9a5af2270b3109ff757fc9f60f02088b72/notebooks/data_cleaning.ipynd
+- 📊 Xem bản đẹp (nbviewer):
+https://nbviewer.org/github.com/NguyenPhanDinhHao/investment-decision-system/blob/b9e95d9a5af2270b3109ff757fc9f60f02088b72/notebooks/data_cleaning.ipynd
